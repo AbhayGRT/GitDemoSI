@@ -1,0 +1,14 @@
+Under what cases would you prefer to use IDENTITY over serial? The main
+benefit of the IDENTITY construct is that an identity is always tied to a
+specific table, so incrementing and resetting the value is managed with the
+table. A serial, on the other hand, creates a sequence object that may or may
+not be reused by other tables and needs to be dropped manually when it’s no
+longer needed. If you wanted to reset the number of a serial, you’d need to
+modify the related SEQUENCE object, which means knowing what the name
+of it is.
+The serial approach is still useful if you need to reuse an autonumber
+generator across many tables. In that case, though, you’d create the sequence
+object separate from the table and set the table column default to the next
+value of the sequence. Internally, the new IDENTITY construct behaves
+much the same by creating behind the scenes a sequence object, but
+preventing that sequence object from being edited directly
