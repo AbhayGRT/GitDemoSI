@@ -27,8 +27,7 @@ select * from regions where region_name ilike 'A%';
 --Exercise 6 (High):
 --Write a query to concatenate the first name and last name of employees, separated by a comma, and pad the resulting string with dashes ("-") on both sides to make it 30 characters long.
 
-select '-' || first_name || ',' || last_name || '-' as full_name from employees;
-
+select concat(lpad(first_name,15,'-'), ',', rpad(last_name,15,'-')) from employees;
 select * from employees;
 
 
