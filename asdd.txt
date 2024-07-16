@@ -1,0 +1,64 @@
+select * from library.authors;
+select * from library.books;
+
+-- fetch the first five books
+select * from library.books limit 5;
+
+-- Fetch the first 3 books sorted by published_date
+select * from library.books order by published_date limit 3;
+
+-- Fetch the first 2 authors sorted by birthdate.
+select * from library.authors order by birthdate limit 3;
+
+-- Select books with id in 1,2,3
+select * from library.books where id in (1,2,3);
+
+-- Select Authors who were born after the year 1940
+select * from library.authors where birthdate > '31-12-1940';
+
+-- Display book details that have pages more than 300
+select * from library.books where pages > 300;
+
+-- Display books published between the year1930 to 1940
+select * from library.books where published_date between '01-01-1930' AND '31-12-1940';
+
+-- Select books with titles starting with "Harry"
+select * from library.books where title ilike 'Harry%';
+
+-- Select books with titles containing the word "Game"
+select * from library.books where title ilike '%Game%';
+
+-- Select books where the published_date is null
+select * from library.books where published_date is null;
+
+-- Query to get the age of each book since its publication date.
+select age(current_date,published_date) from  library.books;
+
+-- Display the publication date in Month DD, YYYY format
+select to_char(published_date, 'Month DD, YYYY') as formatted_date from library.books;
+
+-- Display the book details sorted by their pages
+select * from library.books order by pages;
+
+-- Alter the table books to add a column genre.
+alter table library.books add column genre varchar(20);
+select * from library.books;
+
+
+-- Update the books table with the appropriate genre for each book
+UPDATE library.books
+SET genre = CASE id
+    WHEN 1 THEN 'science-fiction'
+    WHEN 2 THEN 'political-satire'
+    WHEN 3 THEN 'thriller'
+	WHEN 4 then 'politics'
+	WHEN 5 then 'fiction'
+	WHEN 6 then 'detective'
+	WHEN 7 then 'fantasy'
+	WHEN 8 then 'horror'
+	WHEN 9 then 'adventure'
+	WHEN 10 then 'novel'
+	ELSE Null
+END;
+
+select * from library.books;
