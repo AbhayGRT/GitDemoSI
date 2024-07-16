@@ -1,0 +1,26 @@
+create sequence seq_id start 1 increment 1;
+
+create table library.users(
+	pk integer primary key default nextval ('seq_id'),
+	username text not null,
+	email text NOT null
+);
+
+insert into users (username , email) values('alice','alice@gmail.com'),
+('bob','bob@gmail.com'),
+('jane','jane@gmail.com'),
+('harry','harry@gmail.com');
+
+select * from users;
+
+insert into posts (title,content,author,category) values ('Indexing PostgreSQL','Btree in PostgreSQL is....',1,1);
+insert into posts (title,content,author,category) values ('Indexing Mysql','Btree in Mysql is....',1,1);
+insert into posts (title,content,author,category) values ('Data types in C++','Data type in C++ are ..' ,2,3);
+
+
+
+
+select * from generate_series(1,60,13) as x;
+select * from generate_series(0,60,10) as x;
+
+
