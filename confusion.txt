@@ -232,3 +232,7 @@ This will reset the NULL representation to its default state.
 
 Summary
 \pset null in psql is a useful command for controlling how NULL values are displayed in query results. It allows you to set a custom string or symbol to represent NULL values, which can be helpful for readability and data presentation in your psql sessions.
+
+
+https://www.postgresql.org/docs/current/sql-createtable.html
+https://www.postgresql.org/docs/current/wal-intro.html
