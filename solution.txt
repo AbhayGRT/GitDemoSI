@@ -56,3 +56,39 @@ select first_name || ' ' || last_name as full_name ,  CASE
         WHEN POSITION('a' IN LOWER(last_name)) > 0 THEN POSITION('a' IN LOWER(last_name))
         ELSE -1
     END AS position_of_a from employees;
+
+-- 1) Select all countries in region 1
+select * from countries where region_id = 1;
+
+-- 2) Select all departments in location 1700
+select * from departments where location_id = 1700;
+
+-- 3) Select all employees whose salary is greater than 7000
+select * from employees where salary > 7000;
+
+-- 4) Select all locations in country UK
+select * from locations where country_id = 'UK';
+
+-- 5) Select jobs whose min_salary is 4200
+select * from jobs where min_salary = 4200;
+
+-- 6)Select all dependents for employee id 205
+select * from dependents where employee_id = 205;
+
+-- 7)Select all the employees who have joined after the year 1998
+select * from employees where hire_date > '31-12-1998'
+
+-- 8) Check wsehether a job title 'Accountant' exists 
+select exists(select * from jobs where job_title != 'Accountant');
+
+-- 9)Display the employee first and joining date who have joined between 1999 to 2000
+select first_name, hire_date from employees where hire_date between '01-01-1999' AND '31-12-2000';
+
+-- 10) Display the number of years each employee has worked in the company till the current date.
+select first_name, date_part('year',current_date) - date_part('year',hire_date) from employees;
+
+-- 11) Display the employees first name, last name and the hire date in ascending order
+select first_name,last_name,hire_date from employees order by hire_date ASC;
+
+-- 12) Display the employees first name, last name of who joined first
+select first_name,last_name,hire_date from employees order by hire_date ASC limit 1;
