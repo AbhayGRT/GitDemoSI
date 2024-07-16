@@ -1,0 +1,58 @@
+--Exercise 1 (Medium):
+--write a query to retrieve the country names along with the first three characters of each country name in uppercase.
+select * from countries;
+select country_name , upper(substring(country_name,1,3)) from countries;
+	
+--Exercise 2 (Medium):
+--Write a query to find the department names that have the word "Sales" in them (case-insensitive).
+
+select * from departments where department_name ilike 'sales';
+
+--Exercise 3 (Medium):
+--Write a query to retrieve the email addresses of employees, truncating the domain part and displaying only the username (characters before the "@").
+
+select (trim(trailing '@sqltutorial.org' from email)) as username from employees;
+
+--Exercise 4 (Medium):
+--Write a query to capitalize the first letter of each word in the job titles from the jobs table.
+
+select INITCAP(job_title) as full_name from jobs;
+
+
+--Exercise 5 (Medium):
+--Write a query to find the region names that start with the letter "A" (case-insensitive).
+
+select * from regions where region_name ilike 'A%';
+
+--Exercise 6 (High):
+--Write a query to concatenate the first name and last name of employees, separated by a comma, and pad the resulting string with dashes ("-") on both sides to make it 30 characters long.
+
+select '-' || first_name || ',' || last_name || '-' as full_name from employees;
+
+select * from employees;
+
+
+--Exercise 7 (High):
+--Write a query to extract the last two characters of postal codes from the locations table and display them in uppercase.
+
+select * from locations;
+select (upper(right(postal_code,2))) as p_c from locations;
+
+--Exercise 8 (High):
+--Write a query to retrieve the job titles along with the length of each job title (number of characters).
+
+select * from jobs;
+
+select job_title , length(job_title) from jobs;
+
+--Exercise 9 (High):
+--Write a query to find the grade levels from the job_grades table where the highest salary is greater than 8000.
+
+--Exercise 10 (High):
+--Write a query to retrieve the first name and last name of employees, along with the position of the letter "a" (case-insensitive) in their last names. If "a" is not present, display -1.
+
+select * from employees;
+select first_name || ' ' || last_name as full_name ,  CASE
+        WHEN POSITION('a' IN LOWER(last_name)) > 0 THEN POSITION('a' IN LOWER(last_name))
+        ELSE -1
+    END AS position_of_a from employees;
