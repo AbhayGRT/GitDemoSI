@@ -252,3 +252,5 @@ Update dependents set employee_id = 100 where dependent_id = 2;
 Update dependents set employee_id = 100 where dependent_id = 3;
 Update dependents set employee_id = 200 where dependent_id = 4;
 
+select employees.first_name,count(employees.first_name) from employees right join dependents on employees.employee_id = dependents.employee_id
+group by employees.first_name;
