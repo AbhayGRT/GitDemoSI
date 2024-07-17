@@ -230,3 +230,25 @@ select departments.department_name, round(avg(employees.salary),4) from departme
 	join employees on 
 	departments.department_id = employees.department_id 
 	group by departments.department_name having avg(employees.salary) < (select avg(salary) from employees) order by round(avg(employees.salary),4);
+
+
+-- find the department name where the average salary is less than the total average salary of all department
+-- WRONG
+select e.first_name, e.department_id from employees e join departments d on e.department_id = d.department_id
+where  e.salary in (select max(salary) from employees group by department_id)
+
+
+-- find the names of employees with their job titles
+select employees.first_name,jobs.job_title from employees join jobs on employees.job_id = jobs.job_id;
+
+-- find all employees who have dependents and display their names along with their number of depedents
+select * from dependents;
+select * from employees;
+
+select employees.first_name,count(employees.first_name) from employees join dependents on employees.employee_id = dependents.employee_id
+group by employees.first_name;
+
+Update dependents set employee_id = 100 where dependent_id = 2;
+Update dependents set employee_id = 100 where dependent_id = 3;
+Update dependents set employee_id = 200 where dependent_id = 4;
+
