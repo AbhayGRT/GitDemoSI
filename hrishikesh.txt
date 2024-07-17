@@ -1,3 +1,232 @@
+set search_path to hrdb,public;
+show search_path;
+
+select * from employees;
+select * from departments;
+
+--  Inner Join
+select first_name,last_name,department_name from employees join departments on employees.department_id = departments.department_id;
+
+-- Display employees, first name,last name, department name
+select first_name,last_name,department_name from employees join departments on employees.department_id = departments.department_id;
+
+-- Display employees, first name,last name, department name where first_name is susan
+select * from employees join departments on employees.department_id = departments.department_id where employees.first_name ilike 'Susan';
+
+select * from employees;
+
+-- three table join
+
+select employees.first_name, employees.last_name, employees.department_id, locations.city 
+	from employees 
+	join departments on employees.department_id = departments.department_id 
+	join locations on departments.location_id = locations.location_id;
+
+select * from locations;
+select * from departments;
+select * from regions;
+select * from employees;
+
+-- Display the first_name and the last_name 
+select concat(employees.first_name,'.',employees.last_name) as full_name,locations.country_id,regions.region_name
+	from employees 
+	join departments on employees.department_id = departments.department_id 
+	join locations on departments.location_id = locations.location_id ;
+
+
+-- Display the first_name,last_name,department_name of employees people who are from purchasing department
+select * from employees join departments 
+	on employees.department_id = departments.department_id 
+	where departments.department_name ilike 'Purchasing';
+
+-- Display total count from employees from purchasing department
+select count(*) from employees join departments 
+	on employees.department_id = departments.department_id 
+	where departments.department_name ilike 'Purchasing';
+
+-- Display the first_name and department_name of employees fromt the departments Administration, sales and department
+select employees.first_name,departments.department_name from employees join departments 
+	on employees.department_id = departments.department_id 
+	where departments.department_name in ('Sales','Marketing','Administration');
+
+select * from employees;
+
+-- Display the employee name, address, country and region
+select concat(e.first_name, '.', e.last_name) as "Full_Name", 
+	concat(l.street_address, '. ', l.postal_code, l.city, ', ', l.state_province, ', ', l.postal_code) as "Address",
+	c.country_name, r.region_name
+	FROM employees e
+	JOIN departments d on e.department_id = d.department_id
+	JOIN locations l on d.location_id  = l.location_id
+	JOIN countries c on l.country_id = c.country_id
+	JOIN regions r on c.region_id  = r.region_id
+
+set search_path to hrdb,public;
+show search_path;
+
+select * from employees;
+select * from departments;
+
+--  Inner Join
+select first_name,last_name,department_name from employees join departments on employees.department_id = departments.department_id;
+
+-- Display employees, first name,last name, department name
+select first_name,last_name,department_name from employees join departments on employees.department_id = departments.department_id;
+
+-- Display employees, first name,last name, department name where first_name is susan
+select * from employees join departments on employees.department_id = departments.department_id where employees.first_name ilike 'Susan';
+
+select * from employees;
+
+-- three table join
+
+select employees.first_name, employees.last_name, employees.department_id, locations.city 
+	from employees 
+	join departments on employees.department_id = departments.department_id 
+	join locations on departments.location_id = locations.location_id;
+
+select * from locations;
+select * from departments;
+select * from regions;
+select * from employees;
+
+-- Display the first_name and the last_name 
+select concat(employees.first_name,'.',employees.last_name) as full_name,locations.country_id,regions.region_name
+	from employees 
+	join departments on employees.department_id = departments.department_id 
+	join locations on departments.location_id = locations.location_id ;
+
+
+-- Display the first_name,last_name,department_name of employees people who are from purchasing department
+select * from employees join departments 
+	on employees.department_id = departments.department_id 
+	where departments.department_name ilike 'Purchasing';
+
+-- Display total count from employees from purchasing department
+select count(*) from employees join departments 
+	on employees.department_id = departments.department_id 
+	where departments.department_name ilike 'Purchasing';
+
+-- Display the first_name and department_name of employees fromt the departments Administration, sales and department
+select employees.first_name,departments.department_name from employees join departments 
+	on employees.department_id = departments.department_id 
+	where departments.department_name in ('Sales','Marketing','Administration');
+
+select * from employees;
+
+-- Display the employee name, address, country and region
+select concat(e.first_name, '.', e.last_name) as "Full_Name", 
+	concat(l.street_address, '. ', l.postal_code, l.city, ', ', l.state_province, ', ', l.postal_code) as "Address",
+	c.country_name, r.region_name
+	FROM employees e
+	JOIN departments d on e.department_id = d.department_id
+	JOIN locations l on d.location_id  = l.location_id
+	JOIN countries c on l.country_id = c.country_id
+	JOIN regions r on c.region_id  = r.region_id
+
+-- avg salary of each department
 select round(avg(employees.salary),2) from employees join departments 
 	on employees.department_id = departments.department_id 
-	where departments.department_name = 'Sales';
+	group by departments.department_name;
+
+set search_path to hrdb,public;
+show search_path;
+
+select * from employees;
+select * from departments;
+
+--  Inner Join
+select first_name,last_name,department_name from employees join departments on employees.department_id = departments.department_id;
+
+-- Display employees, first name,last name, department name
+select first_name,last_name,department_name from employees join departments on employees.department_id = departments.department_id;
+
+-- Display employees, first name,last name, department name where first_name is susan
+select * from employees join departments on employees.department_id = departments.department_id where employees.first_name ilike 'Susan';
+
+select * from employees;
+
+-- three table join
+
+select employees.first_name, employees.last_name, employees.department_id, locations.city 
+	from employees 
+	join departments on employees.department_id = departments.department_id 
+	join locations on departments.location_id = locations.location_id;
+
+select * from locations;
+select * from departments;
+select * from regions;
+select * from employees;
+
+-- Display the first_name and the last_name 
+select concat(employees.first_name,'.',employees.last_name) as full_name,locations.country_id,regions.region_name
+	from employees 
+	join departments on employees.department_id = departments.department_id 
+	join locations on departments.location_id = locations.location_id ;
+
+
+-- Display the first_name,last_name,department_name of employees people who are from purchasing department
+select * from employees join departments 
+	on employees.department_id = departments.department_id 
+	where departments.department_name ilike 'Purchasing';
+
+-- Display total count from employees from purchasing department
+select count(*) from employees join departments 
+	on employees.department_id = departments.department_id 
+	where departments.department_name ilike 'Purchasing';
+
+-- Display the first_name and department_name of employees fromt the departments Administration, sales and department
+select employees.first_name,departments.department_name from employees join departments 
+	on employees.department_id = departments.department_id 
+	where departments.department_name in ('Sales','Marketing','Administration');
+
+select * from employees;
+
+-- Display the employee name, address, country and region
+select concat(e.first_name, '.', e.last_name) as "Full_Name", 
+	concat(l.street_address, '. ', l.postal_code, l.city, ', ', l.state_province, ', ', l.postal_code) as "Address",
+	c.country_name, r.region_name
+	FROM employees e
+	JOIN departments d on e.department_id = d.department_id
+	JOIN locations l on d.location_id  = l.location_id
+	JOIN countries c on l.country_id = c.country_id
+	JOIN regions r on c.region_id  = r.region_id
+
+-- avg salary of each department
+select round(avg(employees.salary),2) from employees join departments 
+	on employees.department_id = departments.department_id 
+	group by departments.department_name;
+
+
+-- display the number of employees in each department along with department_id descending order
+select count(employee_id), department_id from employees group by department_id order by avg(salary) DESC;
+select department_id,ceil(avg(salary)) from employees group by department_id order by avg(salary);
+select round(avg(employees.salary),2) from employees join departments 
+	on employees.department_id = departments.department_id 
+	group by departments.department_name;
+
+select department_id,ceil(avg(salary)) from employees group by department_id order by avg(salary);
+
+-- avg salary of each department order by average salary
+select department_id,ceil(avg(salary)) from employees group by department_id order by avg(salary);
+
+-- display the department id which has highest number of employees
+select * from employees;
+select * from departments;
+
+select department_id,sum(salary) from employees group by department_id order by sum(salary) desc limit 1;
+
+-- display the department name which has the highest number of employees
+select departments.department_name,count(employees.department_id) from employees join departments on employees.department_id = departments.department_id group by departments.department_name order by count(employees.department_id) desc limit 1;
+
+-- display the number of employees who has the highest pay along with department name
+select departments.department_name,employees.first_name, employees.salary from employees join departments on employees.department_id = departments.department_id order by employees.salary desc limit 1;
+
+-- display the number of employees who has the highest pay 
+select first_name,salary from employees order by salary desc limit 1;
+
+-- find the department name where the average salary is less than the total average salary of all department
+select departments.department_name, round(avg(employees.salary),4) from departments 
+	join employees on 
+	departments.department_id = employees.department_id 
+	group by departments.department_name having avg(employees.salary) < (select avg(salary) from employees) order by round(avg(employees.salary),4);
