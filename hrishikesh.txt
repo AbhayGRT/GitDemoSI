@@ -254,3 +254,17 @@ Update dependents set employee_id = 200 where dependent_id = 4;
 
 select employees.first_name,count(employees.first_name) from employees right join dependents on employees.employee_id = dependents.employee_id
 group by employees.first_name;
+
+
+create view v_person as select * from person;
+select * from v_person;
+
+
+insert into v_person values (6,'Rita',32);
+
+update v_person set age = 35 where pname = 'Rita';
+
+delete from v_person where pname = 'Rita';
+
+create table roles (role_id int primary key, name varchar(20)),
+pid int references person(pid)
