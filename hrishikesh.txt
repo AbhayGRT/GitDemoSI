@@ -319,3 +319,18 @@ $$ LANGUAGE SQL;
 
 
 SELECT * FROM accepts_project('Apollo', 1000, 10);
+
+
+select * from library.posts order by pk;
+
+create table dup_posts as select pk,title from post;
+
+insert into dup_posts (pk,title) values (5,'CSharp Programmming');
+select * from dup_posts;
+
+create or replace function delete_posts_table (p_title text)
+returns table (ret_key integer,ret_title text) as
+	$$
+delete from dup_posts where title=p_title text) as 
+$$
+language sql;
