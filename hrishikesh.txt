@@ -268,3 +268,54 @@ delete from v_person where pname = 'Rita';
 
 create table roles (role_id int primary key, name varchar(20)),
 pid int references person(pid)
+
+
+FUNCTIONS -------------------
+
+-- CREATE FUNCTION function_name(pl type, p2 type,p3 type, ... .., pn type)
+-- RETURNS type AS
+-- BEGIN
+-- -- function logic
+-- END;
+-- LANGUAGE language name
+
+-- A transaction should start with "BEGIN" and should stop with "END"
+
+CREATE OR REPLACE FUNCTION my_sum(x integer, y integer) RETURNS integer AS 
+$$
+SELECT x + y;
+$$ LANGUAGE SQL;
+
+-- To execute a function call select followed by function name and pass parameters 
+select my_sum(2, 3) as "SUM";
+
+set search_path to HRDB, public;
+
+select * from person;
+
+CREATE OR REPLACE FUNCTION delete_posts(p_title text) returns setof integer as $$
+delete from library posts where title=p_title returning pk;
+$$
+LANGUAGE SQL;
+
+select pk, title from posts order by pk;
+insert into (pk, title) values (5, 'CSharp Programming');
+
+select * from project;
+--write a function that accepts project id and percentage to increment the budget for a given project id by x%
+
+CREATE OR REPLACE FUNCTION accepts_project(
+    project_name text,
+    budget integer,
+    increment_percentage decimal
+) RETURNS TABLE (
+    new_budget decimal,
+    project_name text
+) AS $$
+SELECT budget * (1 + (increment_percentage / 100)), project_name
+FROM project
+WHERE project_name = $1
+$$ LANGUAGE SQL;
+
+
+SELECT * FROM accepts_project('Apollo', 1000, 10);
